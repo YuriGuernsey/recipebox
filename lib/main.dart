@@ -52,6 +52,8 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         title: Text('RecipeBox'),
         actions: [
+          Stack(
+            children: [
           IconButton(
             icon: Icon(Icons.bookmark),
             onPressed: () {
@@ -64,15 +66,15 @@ class _MyHomePageState extends State<MyHomePage> {
                 child: ListView.builder(
                   itemCount: bookmark.getBookmarks.length,
                   itemBuilder: (context, index) {
+                    final recipe = bookmark.getBookmarks[index];
                     return ListTile(
-                      title: Text(bookmark.getBookmarks[index].title),
-                      trailing: IconButton(
-                        icon: Icon(Icons.delete),
+                      leading: Image.network(recipe.imageUrl),
+                      title: Text(recipe.title),
+                      trailing: ElevatedButton(
                         onPressed: () {
-                         
-                            bookmark.removeBookmark(bookmark.getBookmarks[index]);
-                          
-                          },
+                          bookmark.removeBookmark(recipe);
+                        },
+                        child: Text('Remove'),
                       ),
                     );
                   },
@@ -84,7 +86,23 @@ class _MyHomePageState extends State<MyHomePage> {
               );
             },
           ),
+          Positioned(
+                right: 8,
+                top: 8,
+                child: CircleAvatar(
+                  radius: 10,
+                  backgroundColor: Colors.red,
+                  foregroundColor: Colors.white,
+                  child: Text(
+                    bookmark.getBookmarks.length.toString(),
+                    style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
+                  ),
+                ),
+              ),
+            ],
+          ),
         ],
+        
       ),
       body: FutureBuilder<List<Recipe>>(
         future: data,

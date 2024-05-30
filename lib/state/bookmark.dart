@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:recipebox/models/recipe_model.dart';
 
 class Bookmark with ChangeNotifier {
   List bookmarks = [];
@@ -14,7 +15,9 @@ class Bookmark with ChangeNotifier {
   }
 
   bool isBookmarked(recipe) {
+   
     return bookmarks.contains(recipe);
+   
   }
 
   List get getBookmarks => bookmarks;
