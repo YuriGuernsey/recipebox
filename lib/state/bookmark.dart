@@ -15,8 +15,18 @@ class Bookmark with ChangeNotifier {
   }
 
   bool isBookmarked(recipe) {
-   
-    return bookmarks.contains(recipe);
+    // check in the list is recipe id is in any of the bookmarks list Ids 
+    bool isTrue = false;
+    for (var i = 0; i < bookmarks.length; i++) {
+      if (bookmarks[i].id == recipe.id) {
+        isTrue = true;
+        break;
+      }
+    }
+
+
+
+    return isTrue;
    
   }
 
