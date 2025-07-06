@@ -41,12 +41,27 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   void initState() {
     super.initState();
-    api = ApiHandler(
-      Url: 'https://api.mob.co.uk/',
-      username: 'mob-api',
-      password: '9r7rey5567ce0m7hbt1u',
-    );
-    data = api.getData('task/recipes.json');
+   
+   // set Mock data in data variable
+   data = Future.value([
+    Recipe(
+      id: 1,
+      title: 'Spaghetti Carbonara',
+      imageUrl: 'https://cdn.dummyjson.com/recipe-images/1.webp'
+      ,),
+    Recipe(
+      id: 2,
+      title: 'Chicken Tikka Masala',
+      imageUrl: 'https://cdn.dummyjson.com/recipe-images/2.webp',),
+    Recipe(
+      id: 3,
+      title: 'Vegetable Stir Fry',
+      imageUrl: 'https://cdn.dummyjson.com/recipe-images/3.webp',),
+    Recipe(
+      id: 4,
+      title: 'Beef Tacos',
+      imageUrl: 'https://cdn.dummyjson.com/recipe-images/4.webp',),
+   ]);
   }
 
   @override
